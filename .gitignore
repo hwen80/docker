@@ -1,0 +1,4 @@
+docker-machine.sh
+daemon.json
+portainer/fullchain.pem
+portainer/privkey.pem
