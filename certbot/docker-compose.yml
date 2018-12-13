@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  certbot:
+    image: hwen80/certbot
+    env_file:
+      - certbot.env
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - overlay
+    volumes:
+      - certs:/etc/letsencrypt
+      - nginx:/etc/nginx
+      - html:/var/www/html
+    deploy:
+      placement:
+        constraints:
+          - 'node.role == manager'
+
+volumes:
+  certs:
+  nginx:
+  html:
+
+networks:
+  overlay:
+    driver: overlay
+    attachable: true
